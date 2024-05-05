@@ -4,7 +4,6 @@ namespace Laraflow\Local;
 
 use Illuminate\Support\ServiceProvider;
 use Laraflow\Local\Commands\InstallCommand;
-use Laraflow\Local\Commands\LocalCommand;
 
 class LocalServiceProvider extends ServiceProvider
 {
@@ -48,8 +47,7 @@ class LocalServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                InstallCommand::class,
-                LocalCommand::class,
+                InstallCommand::class
             ]);
         }
     }
