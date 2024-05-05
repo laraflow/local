@@ -1,14 +1,14 @@
 <?php
 
-namespace VendorName\Skeleton\Exceptions;
+namespace Laraflow\Local\Exceptions;
 
 use Exception;
 use Throwable;
 
 /**
- * Class SkeletonException
+ * Class LocalException
  */
-class SkeletonException extends Exception
+class LocalException extends Exception
 {
     /**
      * CoreException constructor.

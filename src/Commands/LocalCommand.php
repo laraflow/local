@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Laraflow\Local\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LocalCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'local';
 
     public $description = 'My command';
 

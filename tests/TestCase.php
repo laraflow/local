@@ -1,10 +1,10 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Laraflow\Local\Tests;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use Laraflow\Local\LocalServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -21,7 +21,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
-            SkeletonServiceProvider::class,
+            LocalServiceProvider::class,
         ];
     }
 
