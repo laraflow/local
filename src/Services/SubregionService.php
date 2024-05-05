@@ -2,26 +2,22 @@
 
 namespace Laraflow\Local\Services;
 
-
 use Laraflow\Local\Interfaces\SubregionRepository;
 
 /**
  * Class SubregionService
- * @package Laraflow\Local\Services
- *
  */
 class SubregionService
 {
     /**
      * SubregionService constructor.
-     * @param SubregionRepository $subregionRepository
      */
-    public function __construct(SubregionRepository $subregionRepository) {
+    public function __construct(SubregionRepository $subregionRepository)
+    {
         $this->subregionRepository = $subregionRepository;
     }
 
     /**
-     * @param array $filters
      * @return mixed
      */
     public function list(array $filters = [])

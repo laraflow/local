@@ -3,21 +3,18 @@
 namespace Laraflow\Local\Repositories\Mongodb;
 
 use Fintech\Core\Repositories\MongodbRepository;
-use Laraflow\Local\Interfaces\RegionRepository as InterfacesRegionRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use MongoDB\Laravel\Eloquent\Model;
-use InvalidArgumentException;
+use Laraflow\Local\Interfaces\RegionRepository as InterfacesRegionRepository;
 
 /**
  * Class RegionRepository
- * @package Laraflow\Local\Repositories\Mongodb
  */
 class RegionRepository extends MongodbRepository implements InterfacesRegionRepository
 {
     public function __construct()
     {
-       parent::__construct(config('fintech.local.region_model', \Laraflow\Local\Models\Region::class));
+        parent::__construct(config('fintech.local.region_model', \Laraflow\Local\Models\Region::class));
     }
 
     /**

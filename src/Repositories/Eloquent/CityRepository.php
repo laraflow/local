@@ -3,21 +3,18 @@
 namespace Laraflow\Local\Repositories\Eloquent;
 
 use Fintech\Core\Repositories\EloquentRepository;
-use Laraflow\Local\Interfaces\CityRepository as InterfacesCityRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use InvalidArgumentException;
+use Laraflow\Local\Interfaces\CityRepository as InterfacesCityRepository;
 
 /**
  * Class CityRepository
- * @package Laraflow\Local\Repositories\Eloquent
  */
 class CityRepository extends EloquentRepository implements InterfacesCityRepository
 {
     public function __construct()
     {
-       parent::__construct(config('fintech.local.city_model', \Laraflow\Local\Models\City::class));
+        parent::__construct(config('fintech.local.city_model', \Laraflow\Local\Models\City::class));
     }
 
     /**

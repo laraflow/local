@@ -3,21 +3,18 @@
 namespace Laraflow\Local\Repositories\Eloquent;
 
 use Fintech\Core\Repositories\EloquentRepository;
-use Laraflow\Local\Interfaces\StateRepository as InterfacesStateRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use InvalidArgumentException;
+use Laraflow\Local\Interfaces\StateRepository as InterfacesStateRepository;
 
 /**
  * Class StateRepository
- * @package Laraflow\Local\Repositories\Eloquent
  */
 class StateRepository extends EloquentRepository implements InterfacesStateRepository
 {
     public function __construct()
     {
-       parent::__construct(config('fintech.local.state_model', \Laraflow\Local\Models\State::class));
+        parent::__construct(config('fintech.local.state_model', \Laraflow\Local\Models\State::class));
     }
 
     /**

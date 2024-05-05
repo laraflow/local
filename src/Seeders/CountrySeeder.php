@@ -24,6 +24,6 @@ class CountrySeeder extends Seeder
 
     private function data()
     {
-        return array();
+        return [];
     }
 }

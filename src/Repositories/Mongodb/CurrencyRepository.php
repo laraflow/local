@@ -3,21 +3,18 @@
 namespace Laraflow\Local\Repositories\Mongodb;
 
 use Fintech\Core\Repositories\MongodbRepository;
-use Laraflow\Local\Interfaces\CurrencyRepository as InterfacesCurrencyRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use MongoDB\Laravel\Eloquent\Model;
-use InvalidArgumentException;
+use Laraflow\Local\Interfaces\CurrencyRepository as InterfacesCurrencyRepository;
 
 /**
  * Class CurrencyRepository
- * @package Laraflow\Local\Repositories\Mongodb
  */
 class CurrencyRepository extends MongodbRepository implements InterfacesCurrencyRepository
 {
     public function __construct()
     {
-       parent::__construct(config('fintech.local.currency_model', \Laraflow\Local\Models\Currency::class));
+        parent::__construct(config('fintech.local.currency_model', \Laraflow\Local\Models\Currency::class));
     }
 
     /**

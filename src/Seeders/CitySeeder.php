@@ -24,6 +24,6 @@ class CitySeeder extends Seeder
 
     private function data()
     {
-        return array();
+        return [];
     }
 }

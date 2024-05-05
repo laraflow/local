@@ -24,7 +24,6 @@ return [
 
     'root_prefix' => 'test/',
 
-
     /*
     |--------------------------------------------------------------------------
     | Country Model
@@ -33,7 +32,6 @@ return [
     | This value will be used to across system where model is needed
     */
     'country_model' => \Laraflow\Local\Models\Country::class,
-
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +42,6 @@ return [
     */
     'state_model' => \Laraflow\Local\Models\State::class,
 
-
     /*
     |--------------------------------------------------------------------------
     | City Model
@@ -53,7 +50,6 @@ return [
     | This value will be used to across system where model is needed
     */
     'city_model' => \Laraflow\Local\Models\City::class,
-
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +60,6 @@ return [
     */
     'currency_model' => \Laraflow\Local\Models\Currency::class,
 
-
     /*
     |--------------------------------------------------------------------------
     | Region Model
@@ -74,7 +69,6 @@ return [
     */
     'region_model' => \Laraflow\Local\Models\Region::class,
 
-
     /*
     |--------------------------------------------------------------------------
     | Subregion Model
@@ -83,7 +77,6 @@ return [
     | This value will be used to across system where model is needed
     */
     'subregion_model' => \Laraflow\Local\Models\Subregion::class,
-
 
     /*
     |--------------------------------------------------------------------------

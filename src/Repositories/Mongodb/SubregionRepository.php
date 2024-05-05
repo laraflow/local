@@ -3,21 +3,18 @@
 namespace Laraflow\Local\Repositories\Mongodb;
 
 use Fintech\Core\Repositories\MongodbRepository;
-use Laraflow\Local\Interfaces\SubregionRepository as InterfacesSubregionRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use MongoDB\Laravel\Eloquent\Model;
-use InvalidArgumentException;
+use Laraflow\Local\Interfaces\SubregionRepository as InterfacesSubregionRepository;
 
 /**
  * Class SubregionRepository
- * @package Laraflow\Local\Repositories\Mongodb
  */
 class SubregionRepository extends MongodbRepository implements InterfacesSubregionRepository
 {
     public function __construct()
     {
-       parent::__construct(config('fintech.local.subregion_model', \Laraflow\Local\Models\Subregion::class));
+        parent::__construct(config('fintech.local.subregion_model', \Laraflow\Local\Models\Subregion::class));
     }
 
     /**

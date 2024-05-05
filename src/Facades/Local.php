@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Laraflow\Local\Services\RegionService region()
  * @method static \Laraflow\Local\Services\SubregionService subregion()
  * @method static \Laraflow\Local\Services\TownService town()
- * // Crud Service Method Point Do not Remove //
+ *                                                            // Crud Service Method Point Do not Remove //
  *
  * @see \Laraflow\Local\Local
  */

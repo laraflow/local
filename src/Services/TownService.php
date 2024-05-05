@@ -2,26 +2,22 @@
 
 namespace Laraflow\Local\Services;
 
-
 use Laraflow\Local\Interfaces\TownRepository;
 
 /**
  * Class TownService
- * @package Laraflow\Local\Services
- *
  */
 class TownService
 {
     /**
      * TownService constructor.
-     * @param TownRepository $townRepository
      */
-    public function __construct(TownRepository $townRepository) {
+    public function __construct(TownRepository $townRepository)
+    {
         $this->townRepository = $townRepository;
     }
 
     /**
-     * @param array $filters
      * @return mixed
      */
     public function list(array $filters = [])

@@ -1,34 +1,33 @@
 <?php
 
 namespace Laraflow\Local\Http\Controllers;
+
 use Exception;
-use Fintech\Core\Exceptions\StoreOperationException;
-use Fintech\Core\Exceptions\UpdateOperationException;
 use Fintech\Core\Exceptions\DeleteOperationException;
 use Fintech\Core\Exceptions\RestoreOperationException;
+use Fintech\Core\Exceptions\StoreOperationException;
+use Fintech\Core\Exceptions\UpdateOperationException;
 use Fintech\Core\Traits\ApiResponseTrait;
-use Laraflow\Local\Facades\Local;
-use Laraflow\Local\Http\Resources\RegionResource;
-use Laraflow\Local\Http\Resources\RegionCollection;
-use Laraflow\Local\Http\Requests\ImportRegionRequest;
-use Laraflow\Local\Http\Requests\StoreRegionRequest;
-use Laraflow\Local\Http\Requests\UpdateRegionRequest;
-use Laraflow\Local\Http\Requests\IndexRegionRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Laraflow\Local\Facades\Local;
+use Laraflow\Local\Http\Requests\ImportRegionRequest;
+use Laraflow\Local\Http\Requests\IndexRegionRequest;
+use Laraflow\Local\Http\Requests\StoreRegionRequest;
+use Laraflow\Local\Http\Requests\UpdateRegionRequest;
+use Laraflow\Local\Http\Resources\RegionCollection;
+use Laraflow\Local\Http\Resources\RegionResource;
 
 /**
  * Class RegionController
- * @package Laraflow\Local\Http\Controllers
  *
  * @lrd:start
  * This class handle create, display, update, delete & restore
  * operation related to Region
- * @lrd:end
  *
+ * @lrd:end
  */
-
 class RegionController extends Controller
 {
     use ApiResponseTrait;
@@ -38,10 +37,8 @@ class RegionController extends Controller
      * Return a listing of the *Region* resource as collection.
      *
      * *```paginate=false``` returns all resource as list not pagination*
-     * @lrd:end
      *
-     * @param IndexRegionRequest $request
-     * @return RegionCollection|JsonResponse
+     * @lrd:end
      */
     public function index(IndexRegionRequest $request): RegionCollection|JsonResponse
     {
@@ -61,10 +58,9 @@ class RegionController extends Controller
     /**
      * @lrd:start
      * Create a new *Region* resource in storage.
+     *
      * @lrd:end
      *
-     * @param StoreRegionRequest $request
-     * @return JsonResponse
      * @throws StoreOperationException
      */
     public function store(StoreRegionRequest $request): JsonResponse
@@ -74,14 +70,14 @@ class RegionController extends Controller
 
             $region = Local::region()->create($inputs);
 
-            if (!$region) {
+            if (! $region) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.region_model'));
             }
 
             return $this->created([
                 'message' => __('core::messages.resource.created', ['model' => 'Region']),
-                'id' => $region->id
-             ]);
+                'id' => $region->id,
+            ]);
 
         } catch (Exception $exception) {
 
@@ -92,10 +88,9 @@ class RegionController extends Controller
     /**
      * @lrd:start
      * Return a specified *Region* resource found by id.
+     *
      * @lrd:end
      *
-     * @param string|int $id
-     * @return RegionResource|JsonResponse
      * @throws ModelNotFoundException
      */
     public function show(string|int $id): RegionResource|JsonResponse
@@ -104,7 +99,7 @@ class RegionController extends Controller
 
             $region = Local::region()->find($id);
 
-            if (!$region) {
+            if (! $region) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.region_model'), $id);
             }
 
@@ -123,11 +118,9 @@ class RegionController extends Controller
     /**
      * @lrd:start
      * Update a specified *Region* resource using id.
+     *
      * @lrd:end
      *
-     * @param UpdateRegionRequest $request
-     * @param string|int $id
-     * @return JsonResponse
      * @throws ModelNotFoundException
      * @throws UpdateOperationException
      */
@@ -137,13 +130,13 @@ class RegionController extends Controller
 
             $region = Local::region()->find($id);
 
-            if (!$region) {
+            if (! $region) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.region_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (!Local::region()->update($id, $inputs)) {
+            if (! Local::region()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.region_model'), $id);
             }
@@ -163,10 +156,11 @@ class RegionController extends Controller
     /**
      * @lrd:start
      * Soft delete a specified *Region* resource using id.
+     *
      * @lrd:end
      *
-     * @param string|int $id
      * @return JsonResponse
+     *
      * @throws ModelNotFoundException
      * @throws DeleteOperationException
      */
@@ -176,11 +170,11 @@ class RegionController extends Controller
 
             $region = Local::region()->find($id);
 
-            if (!$region) {
+            if (! $region) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.region_model'), $id);
             }
 
-            if (!Local::region()->destroy($id)) {
+            if (! Local::region()->destroy($id)) {
 
                 throw (new DeleteOperationException())->setModel(config('fintech.local.region_model'), $id);
             }
@@ -201,9 +195,9 @@ class RegionController extends Controller
      * @lrd:start
      * Restore the specified *Region* resource from trash.
      * ** ```Soft Delete``` needs to enabled to use this feature**
+     *
      * @lrd:end
      *
-     * @param string|int $id
      * @return JsonResponse
      */
     public function restore(string|int $id)
@@ -212,11 +206,11 @@ class RegionController extends Controller
 
             $region = Local::region()->find($id, true);
 
-            if (!$region) {
+            if (! $region) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.region_model'), $id);
             }
 
-            if (!Local::region()->restore($id)) {
+            if (! Local::region()->restore($id)) {
 
                 throw (new RestoreOperationException())->setModel(config('fintech.local.region_model'), $id);
             }
@@ -239,9 +233,6 @@ class RegionController extends Controller
      * After export job is done system will fire  export completed event
      *
      * @lrd:end
-     *
-     * @param IndexRegionRequest $request
-     * @return JsonResponse
      */
     public function export(IndexRegionRequest $request): JsonResponse
     {
@@ -265,7 +256,6 @@ class RegionController extends Controller
      *
      * @lrd:end
      *
-     * @param ImportRegionRequest $request
      * @return RegionCollection|JsonResponse
      */
     public function import(ImportRegionRequest $request): JsonResponse

@@ -24,6 +24,6 @@ class CurrencySeeder extends Seeder
 
     private function data()
     {
-        return array();
+        return [];
     }
 }

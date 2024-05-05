@@ -2,26 +2,22 @@
 
 namespace Laraflow\Local\Services;
 
-
 use Laraflow\Local\Interfaces\CountryRepository;
 
 /**
  * Class CountryService
- * @package Laraflow\Local\Services
- *
  */
 class CountryService
 {
     /**
      * CountryService constructor.
-     * @param CountryRepository $countryRepository
      */
-    public function __construct(CountryRepository $countryRepository) {
+    public function __construct(CountryRepository $countryRepository)
+    {
         $this->countryRepository = $countryRepository;
     }
 
     /**
-     * @param array $filters
      * @return mixed
      */
     public function list(array $filters = [])

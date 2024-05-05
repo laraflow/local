@@ -3,21 +3,18 @@
 namespace Laraflow\Local\Repositories\Eloquent;
 
 use Fintech\Core\Repositories\EloquentRepository;
-use Laraflow\Local\Interfaces\SubregionRepository as InterfacesSubregionRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use InvalidArgumentException;
+use Laraflow\Local\Interfaces\SubregionRepository as InterfacesSubregionRepository;
 
 /**
  * Class SubregionRepository
- * @package Laraflow\Local\Repositories\Eloquent
  */
 class SubregionRepository extends EloquentRepository implements InterfacesSubregionRepository
 {
     public function __construct()
     {
-       parent::__construct(config('fintech.local.subregion_model', \Laraflow\Local\Models\Subregion::class));
+        parent::__construct(config('fintech.local.subregion_model', \Laraflow\Local\Models\Subregion::class));
     }
 
     /**

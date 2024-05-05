@@ -3,21 +3,18 @@
 namespace Laraflow\Local\Repositories\Mongodb;
 
 use Fintech\Core\Repositories\MongodbRepository;
-use Laraflow\Local\Interfaces\TownRepository as InterfacesTownRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use MongoDB\Laravel\Eloquent\Model;
-use InvalidArgumentException;
+use Laraflow\Local\Interfaces\TownRepository as InterfacesTownRepository;
 
 /**
  * Class TownRepository
- * @package Laraflow\Local\Repositories\Mongodb
  */
 class TownRepository extends MongodbRepository implements InterfacesTownRepository
 {
     public function __construct()
     {
-       parent::__construct(config('fintech.local.town_model', \Laraflow\Local\Models\Town::class));
+        parent::__construct(config('fintech.local.town_model', \Laraflow\Local\Models\Town::class));
     }
 
     /**

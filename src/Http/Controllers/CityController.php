@@ -1,33 +1,32 @@
 <?php
 
 namespace Laraflow\Local\Http\Controllers;
+
 use Exception;
-use Fintech\Core\Exceptions\StoreOperationException;
-use Fintech\Core\Exceptions\UpdateOperationException;
 use Fintech\Core\Exceptions\DeleteOperationException;
 use Fintech\Core\Exceptions\RestoreOperationException;
+use Fintech\Core\Exceptions\StoreOperationException;
+use Fintech\Core\Exceptions\UpdateOperationException;
 use Fintech\Core\Traits\ApiResponseTrait;
-use Laraflow\Local\Facades\Local;
-use Laraflow\Local\Http\Resources\CityResource;
-use Laraflow\Local\Http\Resources\CityCollection;
-use Laraflow\Local\Http\Requests\StoreCityRequest;
-use Laraflow\Local\Http\Requests\UpdateCityRequest;
-use Laraflow\Local\Http\Requests\IndexCityRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Laraflow\Local\Facades\Local;
+use Laraflow\Local\Http\Requests\IndexCityRequest;
+use Laraflow\Local\Http\Requests\StoreCityRequest;
+use Laraflow\Local\Http\Requests\UpdateCityRequest;
+use Laraflow\Local\Http\Resources\CityCollection;
+use Laraflow\Local\Http\Resources\CityResource;
 
 /**
  * Class CityController
- * @package Laraflow\Local\Http\Controllers
  *
  * @lrd:start
  * This class handle create, display, update, delete & restore
  * operation related to City
- * @lrd:end
  *
+ * @lrd:end
  */
-
 class CityController extends Controller
 {
     use ApiResponseTrait;
@@ -37,10 +36,8 @@ class CityController extends Controller
      * Return a listing of the *City* resource as collection.
      *
      * *```paginate=false``` returns all resource as list not pagination*
-     * @lrd:end
      *
-     * @param IndexCityRequest $request
-     * @return CityCollection|JsonResponse
+     * @lrd:end
      */
     public function index(IndexCityRequest $request): CityCollection|JsonResponse
     {
@@ -60,10 +57,9 @@ class CityController extends Controller
     /**
      * @lrd:start
      * Create a new *City* resource in storage.
+     *
      * @lrd:end
      *
-     * @param StoreCityRequest $request
-     * @return JsonResponse
      * @throws StoreOperationException
      */
     public function store(StoreCityRequest $request): JsonResponse
@@ -73,14 +69,14 @@ class CityController extends Controller
 
             $city = Local::city()->create($inputs);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.city_model'));
             }
 
             return $this->created([
                 'message' => __('core::messages.resource.created', ['model' => 'City']),
-                'id' => $city->id
-             ]);
+                'id' => $city->id,
+            ]);
 
         } catch (Exception $exception) {
 
@@ -91,10 +87,9 @@ class CityController extends Controller
     /**
      * @lrd:start
      * Return a specified *City* resource found by id.
+     *
      * @lrd:end
      *
-     * @param string|int $id
-     * @return CityResource|JsonResponse
      * @throws ModelNotFoundException
      */
     public function show(string|int $id): CityResource|JsonResponse
@@ -103,7 +98,7 @@ class CityController extends Controller
 
             $city = Local::city()->find($id);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
@@ -122,11 +117,9 @@ class CityController extends Controller
     /**
      * @lrd:start
      * Update a specified *City* resource using id.
+     *
      * @lrd:end
      *
-     * @param UpdateCityRequest $request
-     * @param string|int $id
-     * @return JsonResponse
      * @throws ModelNotFoundException
      * @throws UpdateOperationException
      */
@@ -136,13 +129,13 @@ class CityController extends Controller
 
             $city = Local::city()->find($id);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (!Local::city()->update($id, $inputs)) {
+            if (! Local::city()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.city_model'), $id);
             }
@@ -162,10 +155,11 @@ class CityController extends Controller
     /**
      * @lrd:start
      * Soft delete a specified *City* resource using id.
+     *
      * @lrd:end
      *
-     * @param string|int $id
      * @return JsonResponse
+     *
      * @throws ModelNotFoundException
      * @throws DeleteOperationException
      */
@@ -175,11 +169,11 @@ class CityController extends Controller
 
             $city = Local::city()->find($id);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
-            if (!Local::city()->destroy($id)) {
+            if (! Local::city()->destroy($id)) {
 
                 throw (new DeleteOperationException())->setModel(config('fintech.local.city_model'), $id);
             }
@@ -200,9 +194,9 @@ class CityController extends Controller
      * @lrd:start
      * Restore the specified *City* resource from trash.
      * ** ```Soft Delete``` needs to enabled to use this feature**
+     *
      * @lrd:end
      *
-     * @param string|int $id
      * @return JsonResponse
      */
     public function restore(string|int $id)
@@ -211,11 +205,11 @@ class CityController extends Controller
 
             $city = Local::city()->find($id, true);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
-            if (!Local::city()->restore($id)) {
+            if (! Local::city()->restore($id)) {
 
                 throw (new RestoreOperationException())->setModel(config('fintech.local.city_model'), $id);
             }
@@ -238,9 +232,6 @@ class CityController extends Controller
      * After export job is done system will fire  export completed event
      *
      * @lrd:end
-     *
-     * @param IndexCityRequest $request
-     * @return JsonResponse
      */
     public function export(IndexCityRequest $request): JsonResponse
     {
@@ -264,7 +255,6 @@ class CityController extends Controller
      *
      * @lrd:end
      *
-     * @param ImportCityRequest $request
      * @return CityCollection|JsonResponse
      */
     public function import(ImportCityRequest $request): JsonResponse

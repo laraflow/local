@@ -2,26 +2,22 @@
 
 namespace Laraflow\Local\Services;
 
-
 use Laraflow\Local\Interfaces\CityRepository;
 
 /**
  * Class CityService
- * @package Laraflow\Local\Services
- *
  */
 class CityService
 {
     /**
      * CityService constructor.
-     * @param CityRepository $cityRepository
      */
-    public function __construct(CityRepository $cityRepository) {
+    public function __construct(CityRepository $cityRepository)
+    {
         $this->cityRepository = $cityRepository;
     }
 
     /**
-     * @param array $filters
      * @return mixed
      */
     public function list(array $filters = [])

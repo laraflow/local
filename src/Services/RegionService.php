@@ -2,26 +2,22 @@
 
 namespace Laraflow\Local\Services;
 
-
 use Laraflow\Local\Interfaces\RegionRepository;
 
 /**
  * Class RegionService
- * @package Laraflow\Local\Services
- *
  */
 class RegionService
 {
     /**
      * RegionService constructor.
-     * @param RegionRepository $regionRepository
      */
-    public function __construct(RegionRepository $regionRepository) {
+    public function __construct(RegionRepository $regionRepository)
+    {
         $this->regionRepository = $regionRepository;
     }
 
     /**
-     * @param array $filters
      * @return mixed
      */
     public function list(array $filters = [])

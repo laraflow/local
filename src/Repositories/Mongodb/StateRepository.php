@@ -3,21 +3,18 @@
 namespace Laraflow\Local\Repositories\Mongodb;
 
 use Fintech\Core\Repositories\MongodbRepository;
-use Laraflow\Local\Interfaces\StateRepository as InterfacesStateRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use MongoDB\Laravel\Eloquent\Model;
-use InvalidArgumentException;
+use Laraflow\Local\Interfaces\StateRepository as InterfacesStateRepository;
 
 /**
  * Class StateRepository
- * @package Laraflow\Local\Repositories\Mongodb
  */
 class StateRepository extends MongodbRepository implements InterfacesStateRepository
 {
     public function __construct()
     {
-       parent::__construct(config('fintech.local.state_model', \Laraflow\Local\Models\State::class));
+        parent::__construct(config('fintech.local.state_model', \Laraflow\Local\Models\State::class));
     }
 
     /**

@@ -1,34 +1,33 @@
 <?php
 
 namespace Laraflow\Local\Http\Controllers;
+
 use Exception;
-use Fintech\Core\Exceptions\StoreOperationException;
-use Fintech\Core\Exceptions\UpdateOperationException;
 use Fintech\Core\Exceptions\DeleteOperationException;
 use Fintech\Core\Exceptions\RestoreOperationException;
+use Fintech\Core\Exceptions\StoreOperationException;
+use Fintech\Core\Exceptions\UpdateOperationException;
 use Fintech\Core\Traits\ApiResponseTrait;
-use Laraflow\Local\Facades\Local;
-use Laraflow\Local\Http\Resources\StateResource;
-use Laraflow\Local\Http\Resources\StateCollection;
-use Laraflow\Local\Http\Requests\ImportStateRequest;
-use Laraflow\Local\Http\Requests\StoreStateRequest;
-use Laraflow\Local\Http\Requests\UpdateStateRequest;
-use Laraflow\Local\Http\Requests\IndexStateRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Laraflow\Local\Facades\Local;
+use Laraflow\Local\Http\Requests\ImportStateRequest;
+use Laraflow\Local\Http\Requests\IndexStateRequest;
+use Laraflow\Local\Http\Requests\StoreStateRequest;
+use Laraflow\Local\Http\Requests\UpdateStateRequest;
+use Laraflow\Local\Http\Resources\StateCollection;
+use Laraflow\Local\Http\Resources\StateResource;
 
 /**
  * Class StateController
- * @package Laraflow\Local\Http\Controllers
  *
  * @lrd:start
  * This class handle create, display, update, delete & restore
  * operation related to State
- * @lrd:end
  *
+ * @lrd:end
  */
-
 class StateController extends Controller
 {
     use ApiResponseTrait;
@@ -38,10 +37,8 @@ class StateController extends Controller
      * Return a listing of the *State* resource as collection.
      *
      * *```paginate=false``` returns all resource as list not pagination*
-     * @lrd:end
      *
-     * @param IndexStateRequest $request
-     * @return StateCollection|JsonResponse
+     * @lrd:end
      */
     public function index(IndexStateRequest $request): StateCollection|JsonResponse
     {
@@ -61,10 +58,9 @@ class StateController extends Controller
     /**
      * @lrd:start
      * Create a new *State* resource in storage.
+     *
      * @lrd:end
      *
-     * @param StoreStateRequest $request
-     * @return JsonResponse
      * @throws StoreOperationException
      */
     public function store(StoreStateRequest $request): JsonResponse
@@ -74,14 +70,14 @@ class StateController extends Controller
 
             $state = Local::state()->create($inputs);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.state_model'));
             }
 
             return $this->created([
                 'message' => __('core::messages.resource.created', ['model' => 'State']),
-                'id' => $state->id
-             ]);
+                'id' => $state->id,
+            ]);
 
         } catch (Exception $exception) {
 
@@ -92,10 +88,9 @@ class StateController extends Controller
     /**
      * @lrd:start
      * Return a specified *State* resource found by id.
+     *
      * @lrd:end
      *
-     * @param string|int $id
-     * @return StateResource|JsonResponse
      * @throws ModelNotFoundException
      */
     public function show(string|int $id): StateResource|JsonResponse
@@ -104,7 +99,7 @@ class StateController extends Controller
 
             $state = Local::state()->find($id);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.state_model'), $id);
             }
 
@@ -123,11 +118,9 @@ class StateController extends Controller
     /**
      * @lrd:start
      * Update a specified *State* resource using id.
+     *
      * @lrd:end
      *
-     * @param UpdateStateRequest $request
-     * @param string|int $id
-     * @return JsonResponse
      * @throws ModelNotFoundException
      * @throws UpdateOperationException
      */
@@ -137,13 +130,13 @@ class StateController extends Controller
 
             $state = Local::state()->find($id);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.state_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (!Local::state()->update($id, $inputs)) {
+            if (! Local::state()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.state_model'), $id);
             }
@@ -163,10 +156,11 @@ class StateController extends Controller
     /**
      * @lrd:start
      * Soft delete a specified *State* resource using id.
+     *
      * @lrd:end
      *
-     * @param string|int $id
      * @return JsonResponse
+     *
      * @throws ModelNotFoundException
      * @throws DeleteOperationException
      */
@@ -176,11 +170,11 @@ class StateController extends Controller
 
             $state = Local::state()->find($id);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.state_model'), $id);
             }
 
-            if (!Local::state()->destroy($id)) {
+            if (! Local::state()->destroy($id)) {
 
                 throw (new DeleteOperationException())->setModel(config('fintech.local.state_model'), $id);
             }
@@ -201,9 +195,9 @@ class StateController extends Controller
      * @lrd:start
      * Restore the specified *State* resource from trash.
      * ** ```Soft Delete``` needs to enabled to use this feature**
+     *
      * @lrd:end
      *
-     * @param string|int $id
      * @return JsonResponse
      */
     public function restore(string|int $id)
@@ -212,11 +206,11 @@ class StateController extends Controller
 
             $state = Local::state()->find($id, true);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.state_model'), $id);
             }
 
-            if (!Local::state()->restore($id)) {
+            if (! Local::state()->restore($id)) {
 
                 throw (new RestoreOperationException())->setModel(config('fintech.local.state_model'), $id);
             }
@@ -239,9 +233,6 @@ class StateController extends Controller
      * After export job is done system will fire  export completed event
      *
      * @lrd:end
-     *
-     * @param IndexStateRequest $request
-     * @return JsonResponse
      */
     public function export(IndexStateRequest $request): JsonResponse
     {
@@ -265,7 +256,6 @@ class StateController extends Controller
      *
      * @lrd:end
      *
-     * @param ImportStateRequest $request
      * @return StateCollection|JsonResponse
      */
     public function import(ImportStateRequest $request): JsonResponse

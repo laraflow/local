@@ -1,34 +1,33 @@
 <?php
 
 namespace Laraflow\Local\Http\Controllers;
+
 use Exception;
-use Fintech\Core\Exceptions\StoreOperationException;
-use Fintech\Core\Exceptions\UpdateOperationException;
 use Fintech\Core\Exceptions\DeleteOperationException;
 use Fintech\Core\Exceptions\RestoreOperationException;
+use Fintech\Core\Exceptions\StoreOperationException;
+use Fintech\Core\Exceptions\UpdateOperationException;
 use Fintech\Core\Traits\ApiResponseTrait;
-use Laraflow\Local\Facades\Local;
-use Laraflow\Local\Http\Resources\CountryResource;
-use Laraflow\Local\Http\Resources\CountryCollection;
-use Laraflow\Local\Http\Requests\ImportCountryRequest;
-use Laraflow\Local\Http\Requests\StoreCountryRequest;
-use Laraflow\Local\Http\Requests\UpdateCountryRequest;
-use Laraflow\Local\Http\Requests\IndexCountryRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
+use Laraflow\Local\Facades\Local;
+use Laraflow\Local\Http\Requests\ImportCountryRequest;
+use Laraflow\Local\Http\Requests\IndexCountryRequest;
+use Laraflow\Local\Http\Requests\StoreCountryRequest;
+use Laraflow\Local\Http\Requests\UpdateCountryRequest;
+use Laraflow\Local\Http\Resources\CountryCollection;
+use Laraflow\Local\Http\Resources\CountryResource;
 
 /**
  * Class CountryController
- * @package Laraflow\Local\Http\Controllers
  *
  * @lrd:start
  * This class handle create, display, update, delete & restore
  * operation related to Country
- * @lrd:end
  *
+ * @lrd:end
  */
-
 class CountryController extends Controller
 {
     use ApiResponseTrait;
@@ -38,10 +37,8 @@ class CountryController extends Controller
      * Return a listing of the *Country* resource as collection.
      *
      * *```paginate=false``` returns all resource as list not pagination*
-     * @lrd:end
      *
-     * @param IndexCountryRequest $request
-     * @return CountryCollection|JsonResponse
+     * @lrd:end
      */
     public function index(IndexCountryRequest $request): CountryCollection|JsonResponse
     {
@@ -61,10 +58,9 @@ class CountryController extends Controller
     /**
      * @lrd:start
      * Create a new *Country* resource in storage.
+     *
      * @lrd:end
      *
-     * @param StoreCountryRequest $request
-     * @return JsonResponse
      * @throws StoreOperationException
      */
     public function store(StoreCountryRequest $request): JsonResponse
@@ -74,14 +70,14 @@ class CountryController extends Controller
 
             $country = Local::country()->create($inputs);
 
-            if (!$country) {
+            if (! $country) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.country_model'));
             }
 
             return $this->created([
                 'message' => __('core::messages.resource.created', ['model' => 'Country']),
-                'id' => $country->id
-             ]);
+                'id' => $country->id,
+            ]);
 
         } catch (Exception $exception) {
 
@@ -92,10 +88,9 @@ class CountryController extends Controller
     /**
      * @lrd:start
      * Return a specified *Country* resource found by id.
+     *
      * @lrd:end
      *
-     * @param string|int $id
-     * @return CountryResource|JsonResponse
      * @throws ModelNotFoundException
      */
     public function show(string|int $id): CountryResource|JsonResponse
@@ -104,7 +99,7 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id);
 
-            if (!$country) {
+            if (! $country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
@@ -123,11 +118,9 @@ class CountryController extends Controller
     /**
      * @lrd:start
      * Update a specified *Country* resource using id.
+     *
      * @lrd:end
      *
-     * @param UpdateCountryRequest $request
-     * @param string|int $id
-     * @return JsonResponse
      * @throws ModelNotFoundException
      * @throws UpdateOperationException
      */
@@ -137,13 +130,13 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id);
 
-            if (!$country) {
+            if (! $country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (!Local::country()->update($id, $inputs)) {
+            if (! Local::country()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.country_model'), $id);
             }
@@ -163,10 +156,11 @@ class CountryController extends Controller
     /**
      * @lrd:start
      * Soft delete a specified *Country* resource using id.
+     *
      * @lrd:end
      *
-     * @param string|int $id
      * @return JsonResponse
+     *
      * @throws ModelNotFoundException
      * @throws DeleteOperationException
      */
@@ -176,11 +170,11 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id);
 
-            if (!$country) {
+            if (! $country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
-            if (!Local::country()->destroy($id)) {
+            if (! Local::country()->destroy($id)) {
 
                 throw (new DeleteOperationException())->setModel(config('fintech.local.country_model'), $id);
             }
@@ -201,9 +195,9 @@ class CountryController extends Controller
      * @lrd:start
      * Restore the specified *Country* resource from trash.
      * ** ```Soft Delete``` needs to enabled to use this feature**
+     *
      * @lrd:end
      *
-     * @param string|int $id
      * @return JsonResponse
      */
     public function restore(string|int $id)
@@ -212,11 +206,11 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id, true);
 
-            if (!$country) {
+            if (! $country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
-            if (!Local::country()->restore($id)) {
+            if (! Local::country()->restore($id)) {
 
                 throw (new RestoreOperationException())->setModel(config('fintech.local.country_model'), $id);
             }
@@ -239,9 +233,6 @@ class CountryController extends Controller
      * After export job is done system will fire  export completed event
      *
      * @lrd:end
-     *
-     * @param IndexCountryRequest $request
-     * @return JsonResponse
      */
     public function export(IndexCountryRequest $request): JsonResponse
     {
@@ -265,7 +256,6 @@ class CountryController extends Controller
      *
      * @lrd:end
      *
-     * @param ImportCountryRequest $request
      * @return CountryCollection|JsonResponse
      */
     public function import(ImportCountryRequest $request): JsonResponse

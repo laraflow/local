@@ -2,26 +2,22 @@
 
 namespace Laraflow\Local\Services;
 
-
 use Laraflow\Local\Interfaces\StateRepository;
 
 /**
  * Class StateService
- * @package Laraflow\Local\Services
- *
  */
 class StateService
 {
     /**
      * StateService constructor.
-     * @param StateRepository $stateRepository
      */
-    public function __construct(StateRepository $stateRepository) {
+    public function __construct(StateRepository $stateRepository)
+    {
         $this->stateRepository = $stateRepository;
     }
 
     /**
-     * @param array $filters
      * @return mixed
      */
     public function list(array $filters = [])
