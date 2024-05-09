@@ -1,6 +1,21 @@
 <?php
 
 // config for Laraflow/Local
+use Laraflow\Local\Models\City;
+use Laraflow\Local\Models\Country;
+use Laraflow\Local\Models\Currency;
+use Laraflow\Local\Models\Region;
+use Laraflow\Local\Models\State;
+use Laraflow\Local\Models\Subregion;
+use Laraflow\Local\Models\Town;
+use Laraflow\Local\Repositories\Eloquent\CityRepository;
+use Laraflow\Local\Repositories\Eloquent\CountryRepository;
+use Laraflow\Local\Repositories\Eloquent\CurrencyRepository;
+use Laraflow\Local\Repositories\Eloquent\RegionRepository;
+use Laraflow\Local\Repositories\Eloquent\StateRepository;
+use Laraflow\Local\Repositories\Eloquent\SubregionRepository;
+use Laraflow\Local\Repositories\Eloquent\TownRepository;
+
 return [
 
     /*
@@ -31,7 +46,7 @@ return [
     |
     | This value will be used to across system where model is needed
     */
-    'country_model' => \Laraflow\Local\Models\Country::class,
+    'country_model' => Country::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +55,7 @@ return [
     |
     | This value will be used to across system where model is needed
     */
-    'state_model' => \Laraflow\Local\Models\State::class,
+    'state_model' => State::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +64,7 @@ return [
     |
     | This value will be used to across system where model is needed
     */
-    'city_model' => \Laraflow\Local\Models\City::class,
+    'city_model' => City::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -58,7 +73,7 @@ return [
     |
     | This value will be used to across system where model is needed
     */
-    'currency_model' => \Laraflow\Local\Models\Currency::class,
+    'currency_model' => Currency::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +82,7 @@ return [
     |
     | This value will be used to across system where model is needed
     */
-    'region_model' => \Laraflow\Local\Models\Region::class,
+    'region_model' => Region::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -76,7 +91,7 @@ return [
     |
     | This value will be used to across system where model is needed
     */
-    'subregion_model' => \Laraflow\Local\Models\Subregion::class,
+    'subregion_model' => Subregion::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +100,7 @@ return [
     |
     | This value will be used to across system where model is needed
     */
-    'town_model' => \Laraflow\Local\Models\Town::class,
+    'town_model' => Town::class,
 
     //** Model Config Point Do not Remove **//
 
@@ -98,19 +113,19 @@ return [
     */
 
     'repositories' => [
-        \Laraflow\Local\Interfaces\CountryRepository::class => \Laraflow\Local\Repositories\Eloquent\CountryRepository::class,
+        \Laraflow\Local\Interfaces\CountryRepository::class => CountryRepository::class,
 
-        \Laraflow\Local\Interfaces\StateRepository::class => \Laraflow\Local\Repositories\Eloquent\StateRepository::class,
+        \Laraflow\Local\Interfaces\StateRepository::class => StateRepository::class,
 
-        \Laraflow\Local\Interfaces\CityRepository::class => \Laraflow\Local\Repositories\Eloquent\CityRepository::class,
+        \Laraflow\Local\Interfaces\CityRepository::class => CityRepository::class,
 
-        \Laraflow\Local\Interfaces\CurrencyRepository::class => \Laraflow\Local\Repositories\Eloquent\CurrencyRepository::class,
+        \Laraflow\Local\Interfaces\CurrencyRepository::class => CurrencyRepository::class,
 
-        \Laraflow\Local\Interfaces\RegionRepository::class => \Laraflow\Local\Repositories\Eloquent\RegionRepository::class,
+        \Laraflow\Local\Interfaces\RegionRepository::class => RegionRepository::class,
 
-        \Laraflow\Local\Interfaces\SubregionRepository::class => \Laraflow\Local\Repositories\Eloquent\SubregionRepository::class,
+        \Laraflow\Local\Interfaces\SubregionRepository::class => SubregionRepository::class,
 
-        \Laraflow\Local\Interfaces\TownRepository::class => \Laraflow\Local\Repositories\Eloquent\TownRepository::class,
+        \Laraflow\Local\Interfaces\TownRepository::class => TownRepository::class,
 
         //** Repository Binding Config Point Do not Remove **//
     ],

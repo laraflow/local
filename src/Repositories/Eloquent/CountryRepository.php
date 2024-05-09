@@ -6,6 +6,7 @@ use Fintech\Core\Repositories\EloquentRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 use Laraflow\Local\Interfaces\CountryRepository as InterfacesCountryRepository;
+use Laraflow\Local\Models\Country;
 
 /**
  * Class CountryRepository
@@ -14,7 +15,7 @@ class CountryRepository extends EloquentRepository implements InterfacesCountryR
 {
     public function __construct()
     {
-        parent::__construct(config('fintech.local.country_model', \Laraflow\Local\Models\Country::class));
+        parent::__construct(config('fintech.local.country_model', Country::class));
     }
 
     /**
@@ -28,7 +29,7 @@ class CountryRepository extends EloquentRepository implements InterfacesCountryR
         $query = $this->model->newQuery();
 
         //Searching
-        if (! empty($filters['search'])) {
+        if (!empty($filters['search'])) {
             if (is_numeric($filters['search'])) {
                 $query->where($this->model->getKeyName(), 'like', "%{$filters['search']}%");
             } else {

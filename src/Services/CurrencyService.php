@@ -17,20 +17,6 @@ class CurrencyService
         $this->currencyRepository = $currencyRepository;
     }
 
-    /**
-     * @return mixed
-     */
-    public function list(array $filters = [])
-    {
-        return $this->currencyRepository->list($filters);
-
-    }
-
-    public function create(array $inputs = [])
-    {
-        return $this->currencyRepository->create($inputs);
-    }
-
     public function find($id, $onlyTrashed = false)
     {
         return $this->currencyRepository->find($id, $onlyTrashed);
@@ -56,8 +42,22 @@ class CurrencyService
         return $this->currencyRepository->list($filters);
     }
 
+    /**
+     * @return mixed
+     */
+    public function list(array $filters = [])
+    {
+        return $this->currencyRepository->list($filters);
+
+    }
+
     public function import(array $filters)
     {
         return $this->currencyRepository->create($filters);
+    }
+
+    public function create(array $inputs = [])
+    {
+        return $this->currencyRepository->create($inputs);
     }
 }

@@ -17,20 +17,6 @@ class RegionService
         $this->regionRepository = $regionRepository;
     }
 
-    /**
-     * @return mixed
-     */
-    public function list(array $filters = [])
-    {
-        return $this->regionRepository->list($filters);
-
-    }
-
-    public function create(array $inputs = [])
-    {
-        return $this->regionRepository->create($inputs);
-    }
-
     public function find($id, $onlyTrashed = false)
     {
         return $this->regionRepository->find($id, $onlyTrashed);
@@ -56,8 +42,22 @@ class RegionService
         return $this->regionRepository->list($filters);
     }
 
+    /**
+     * @return mixed
+     */
+    public function list(array $filters = [])
+    {
+        return $this->regionRepository->list($filters);
+
+    }
+
     public function import(array $filters)
     {
         return $this->regionRepository->create($filters);
+    }
+
+    public function create(array $inputs = [])
+    {
+        return $this->regionRepository->create($inputs);
     }
 }

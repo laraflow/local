@@ -6,6 +6,7 @@ use Fintech\Core\Repositories\EloquentRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 use Laraflow\Local\Interfaces\TownRepository as InterfacesTownRepository;
+use Laraflow\Local\Models\Town;
 
 /**
  * Class TownRepository
@@ -14,7 +15,7 @@ class TownRepository extends EloquentRepository implements InterfacesTownReposit
 {
     public function __construct()
     {
-        parent::__construct(config('fintech.local.town_model', \Laraflow\Local\Models\Town::class));
+        parent::__construct(config('fintech.local.town_model', Town::class));
     }
 
     /**
@@ -28,7 +29,7 @@ class TownRepository extends EloquentRepository implements InterfacesTownReposit
         $query = $this->model->newQuery();
 
         //Searching
-        if (! empty($filters['search'])) {
+        if (!empty($filters['search'])) {
             if (is_numeric($filters['search'])) {
                 $query->where($this->model->getKeyName(), 'like', "%{$filters['search']}%");
             } else {

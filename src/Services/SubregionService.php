@@ -17,20 +17,6 @@ class SubregionService
         $this->subregionRepository = $subregionRepository;
     }
 
-    /**
-     * @return mixed
-     */
-    public function list(array $filters = [])
-    {
-        return $this->subregionRepository->list($filters);
-
-    }
-
-    public function create(array $inputs = [])
-    {
-        return $this->subregionRepository->create($inputs);
-    }
-
     public function find($id, $onlyTrashed = false)
     {
         return $this->subregionRepository->find($id, $onlyTrashed);
@@ -56,8 +42,22 @@ class SubregionService
         return $this->subregionRepository->list($filters);
     }
 
+    /**
+     * @return mixed
+     */
+    public function list(array $filters = [])
+    {
+        return $this->subregionRepository->list($filters);
+
+    }
+
     public function import(array $filters)
     {
         return $this->subregionRepository->create($filters);
+    }
+
+    public function create(array $inputs = [])
+    {
+        return $this->subregionRepository->create($inputs);
     }
 }

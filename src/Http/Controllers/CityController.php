@@ -7,7 +7,6 @@ use Fintech\Core\Exceptions\DeleteOperationException;
 use Fintech\Core\Exceptions\RestoreOperationException;
 use Fintech\Core\Exceptions\StoreOperationException;
 use Fintech\Core\Exceptions\UpdateOperationException;
-use Fintech\RestApi\Traits\ApiResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
@@ -29,8 +28,6 @@ use Laraflow\Local\Http\Resources\CityResource;
  */
 class CityController extends Controller
 {
-    use ApiResponseTrait;
-
     /**
      * @lrd:start
      * Return a listing of the *City* resource as collection.
@@ -50,7 +47,7 @@ class CityController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -69,7 +66,7 @@ class CityController extends Controller
 
             $city = Local::city()->create($inputs);
 
-            if (! $city) {
+            if (!$city) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.city_model'));
             }
 
@@ -80,7 +77,7 @@ class CityController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -98,7 +95,7 @@ class CityController extends Controller
 
             $city = Local::city()->find($id);
 
-            if (! $city) {
+            if (!$city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
@@ -110,7 +107,7 @@ class CityController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -129,13 +126,13 @@ class CityController extends Controller
 
             $city = Local::city()->find($id);
 
-            if (! $city) {
+            if (!$city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (! Local::city()->update($id, $inputs)) {
+            if (!Local::city()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.city_model'), $id);
             }
@@ -148,7 +145,7 @@ class CityController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -169,11 +166,11 @@ class CityController extends Controller
 
             $city = Local::city()->find($id);
 
-            if (! $city) {
+            if (!$city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
-            if (! Local::city()->destroy($id)) {
+            if (!Local::city()->destroy($id)) {
 
                 throw (new DeleteOperationException())->setModel(config('fintech.local.city_model'), $id);
             }
@@ -186,7 +183,7 @@ class CityController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -205,11 +202,11 @@ class CityController extends Controller
 
             $city = Local::city()->find($id, true);
 
-            if (! $city) {
+            if (!$city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
-            if (! Local::city()->restore($id)) {
+            if (!Local::city()->restore($id)) {
 
                 throw (new RestoreOperationException())->setModel(config('fintech.local.city_model'), $id);
             }
@@ -222,7 +219,7 @@ class CityController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -244,7 +241,7 @@ class CityController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -268,7 +265,7 @@ class CityController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 }

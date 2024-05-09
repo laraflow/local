@@ -7,7 +7,6 @@ use Fintech\Core\Exceptions\DeleteOperationException;
 use Fintech\Core\Exceptions\RestoreOperationException;
 use Fintech\Core\Exceptions\StoreOperationException;
 use Fintech\Core\Exceptions\UpdateOperationException;
-use Fintech\RestApi\Traits\ApiResponseTrait;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
@@ -30,8 +29,6 @@ use Laraflow\Local\Http\Resources\CountryResource;
  */
 class CountryController extends Controller
 {
-    use ApiResponseTrait;
-
     /**
      * @lrd:start
      * Return a listing of the *Country* resource as collection.
@@ -51,7 +48,7 @@ class CountryController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -70,7 +67,7 @@ class CountryController extends Controller
 
             $country = Local::country()->create($inputs);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.country_model'));
             }
 
@@ -81,7 +78,7 @@ class CountryController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -99,7 +96,7 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
@@ -111,7 +108,7 @@ class CountryController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -130,13 +127,13 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (! Local::country()->update($id, $inputs)) {
+            if (!Local::country()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.country_model'), $id);
             }
@@ -149,7 +146,7 @@ class CountryController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -170,11 +167,11 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
-            if (! Local::country()->destroy($id)) {
+            if (!Local::country()->destroy($id)) {
 
                 throw (new DeleteOperationException())->setModel(config('fintech.local.country_model'), $id);
             }
@@ -187,7 +184,7 @@ class CountryController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -206,11 +203,11 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id, true);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
-            if (! Local::country()->restore($id)) {
+            if (!Local::country()->restore($id)) {
 
                 throw (new RestoreOperationException())->setModel(config('fintech.local.country_model'), $id);
             }
@@ -223,7 +220,7 @@ class CountryController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -245,7 +242,7 @@ class CountryController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 
@@ -269,7 +266,7 @@ class CountryController extends Controller
 
         } catch (Exception $exception) {
 
-            return $this->failed($exception->getMessage());
+            return response()->failed($exception->getMessage());
         }
     }
 }

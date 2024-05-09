@@ -2,11 +2,13 @@
 
 namespace Laraflow\Local\Http\Requests;
 
+use Fintech\RestApi\Traits\HasPaginateQuery;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class IndexTownRequest extends FormRequest
 {
-    use \Fintech\RestApi\Traits\HasPaginateQuery;
+    use HasPaginateQuery;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -19,7 +21,7 @@ class IndexTownRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {

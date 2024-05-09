@@ -6,6 +6,7 @@ use Fintech\Core\Repositories\MongodbRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 use Laraflow\Local\Interfaces\StateRepository as InterfacesStateRepository;
+use Laraflow\Local\Models\State;
 
 /**
  * Class StateRepository
@@ -14,7 +15,7 @@ class StateRepository extends MongodbRepository implements InterfacesStateReposi
 {
     public function __construct()
     {
-        parent::__construct(config('fintech.local.state_model', \Laraflow\Local\Models\State::class));
+        parent::__construct(config('fintech.local.state_model', State::class));
     }
 
     /**
@@ -28,7 +29,7 @@ class StateRepository extends MongodbRepository implements InterfacesStateReposi
         $query = $this->model->newQuery();
 
         //Searching
-        if (! empty($filters['search'])) {
+        if (!empty($filters['search'])) {
             if (is_numeric($filters['search'])) {
                 $query->where($this->model->getKeyName(), 'like', "%{$filters['search']}%");
             } else {

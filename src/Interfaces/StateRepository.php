@@ -5,6 +5,7 @@ namespace Laraflow\Local\Interfaces;
 use Fintech\Core\Abstracts\BaseModel;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use InvalidArgumentException;
 
 /**
  * Interface StateRepository
@@ -36,7 +37,7 @@ interface StateRepository
     /**
      * find and delete a entry from records
      *
-     * @param  bool  $onlyTrashed
+     * @param bool $onlyTrashed
      * @return BaseModel
      */
     public function find(int|string $id, $onlyTrashed = false);
@@ -49,7 +50,7 @@ interface StateRepository
     /**
      * find and restore a entry from records
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function restore(int|string $id);
 }

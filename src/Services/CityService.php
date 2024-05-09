@@ -17,20 +17,6 @@ class CityService
         $this->cityRepository = $cityRepository;
     }
 
-    /**
-     * @return mixed
-     */
-    public function list(array $filters = [])
-    {
-        return $this->cityRepository->list($filters);
-
-    }
-
-    public function create(array $inputs = [])
-    {
-        return $this->cityRepository->create($inputs);
-    }
-
     public function find($id, $onlyTrashed = false)
     {
         return $this->cityRepository->find($id, $onlyTrashed);
@@ -56,8 +42,22 @@ class CityService
         return $this->cityRepository->list($filters);
     }
 
+    /**
+     * @return mixed
+     */
+    public function list(array $filters = [])
+    {
+        return $this->cityRepository->list($filters);
+
+    }
+
     public function import(array $filters)
     {
         return $this->cityRepository->create($filters);
+    }
+
+    public function create(array $inputs = [])
+    {
+        return $this->cityRepository->create($inputs);
     }
 }

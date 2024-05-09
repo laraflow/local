@@ -17,20 +17,6 @@ class StateService
         $this->stateRepository = $stateRepository;
     }
 
-    /**
-     * @return mixed
-     */
-    public function list(array $filters = [])
-    {
-        return $this->stateRepository->list($filters);
-
-    }
-
-    public function create(array $inputs = [])
-    {
-        return $this->stateRepository->create($inputs);
-    }
-
     public function find($id, $onlyTrashed = false)
     {
         return $this->stateRepository->find($id, $onlyTrashed);
@@ -56,8 +42,22 @@ class StateService
         return $this->stateRepository->list($filters);
     }
 
+    /**
+     * @return mixed
+     */
+    public function list(array $filters = [])
+    {
+        return $this->stateRepository->list($filters);
+
+    }
+
     public function import(array $filters)
     {
         return $this->stateRepository->create($filters);
+    }
+
+    public function create(array $inputs = [])
+    {
+        return $this->stateRepository->create($inputs);
     }
 }

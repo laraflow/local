@@ -6,6 +6,7 @@ use Fintech\Core\Repositories\MongodbRepository;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 use Laraflow\Local\Interfaces\CurrencyRepository as InterfacesCurrencyRepository;
+use Laraflow\Local\Models\Currency;
 
 /**
  * Class CurrencyRepository
@@ -14,7 +15,7 @@ class CurrencyRepository extends MongodbRepository implements InterfacesCurrency
 {
     public function __construct()
     {
-        parent::__construct(config('fintech.local.currency_model', \Laraflow\Local\Models\Currency::class));
+        parent::__construct(config('fintech.local.currency_model', Currency::class));
     }
 
     /**
@@ -28,7 +29,7 @@ class CurrencyRepository extends MongodbRepository implements InterfacesCurrency
         $query = $this->model->newQuery();
 
         //Searching
-        if (! empty($filters['search'])) {
+        if (!empty($filters['search'])) {
             if (is_numeric($filters['search'])) {
                 $query->where($this->model->getKeyName(), 'like', "%{$filters['search']}%");
             } else {

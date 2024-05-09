@@ -17,20 +17,6 @@ class CountryService
         $this->countryRepository = $countryRepository;
     }
 
-    /**
-     * @return mixed
-     */
-    public function list(array $filters = [])
-    {
-        return $this->countryRepository->list($filters);
-
-    }
-
-    public function create(array $inputs = [])
-    {
-        return $this->countryRepository->create($inputs);
-    }
-
     public function find($id, $onlyTrashed = false)
     {
         return $this->countryRepository->find($id, $onlyTrashed);
@@ -56,8 +42,22 @@ class CountryService
         return $this->countryRepository->list($filters);
     }
 
+    /**
+     * @return mixed
+     */
+    public function list(array $filters = [])
+    {
+        return $this->countryRepository->list($filters);
+
+    }
+
     public function import(array $filters)
     {
         return $this->countryRepository->create($filters);
+    }
+
+    public function create(array $inputs = [])
+    {
+        return $this->countryRepository->create($inputs);
     }
 }
