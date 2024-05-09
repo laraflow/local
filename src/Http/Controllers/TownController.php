@@ -75,7 +75,7 @@ class TownController extends Controller
             }
 
             return $this->created([
-                'message' => __('core::messages.resource.created', ['model' => 'Town']),
+                'message' => __('restapi::messages.resource.created', ['model' => 'Town']),
                 'id' => $town->id,
             ]);
 
@@ -141,7 +141,7 @@ class TownController extends Controller
                 throw (new UpdateOperationException)->setModel(config('fintech.local.town_model'), $id);
             }
 
-            return $this->updated(__('core::messages.resource.updated', ['model' => 'Town']));
+            return $this->updated(__('restapi::messages.resource.updated', ['model' => 'Town']));
 
         } catch (ModelNotFoundException $exception) {
 
@@ -179,7 +179,7 @@ class TownController extends Controller
                 throw (new DeleteOperationException())->setModel(config('fintech.local.town_model'), $id);
             }
 
-            return $this->deleted(__('core::messages.resource.deleted', ['model' => 'Town']));
+            return $this->deleted(__('restapi::messages.resource.deleted', ['model' => 'Town']));
 
         } catch (ModelNotFoundException $exception) {
 
@@ -215,7 +215,7 @@ class TownController extends Controller
                 throw (new RestoreOperationException())->setModel(config('fintech.local.town_model'), $id);
             }
 
-            return $this->restored(__('core::messages.resource.restored', ['model' => 'Town']));
+            return $this->restored(__('restapi::messages.resource.restored', ['model' => 'Town']));
 
         } catch (ModelNotFoundException $exception) {
 
@@ -241,7 +241,7 @@ class TownController extends Controller
 
             $townPaginate = Local::town()->export($inputs);
 
-            return $this->exported(__('core::messages.resource.exported', ['model' => 'Town']));
+            return $this->exported(__('restapi::messages.resource.exported', ['model' => 'Town']));
 
         } catch (Exception $exception) {
 

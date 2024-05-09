@@ -75,7 +75,7 @@ class SubregionController extends Controller
             }
 
             return $this->created([
-                'message' => __('core::messages.resource.created', ['model' => 'Subregion']),
+                'message' => __('restapi::messages.resource.created', ['model' => 'Subregion']),
                 'id' => $subregion->id,
             ]);
 
@@ -141,7 +141,7 @@ class SubregionController extends Controller
                 throw (new UpdateOperationException)->setModel(config('fintech.local.subregion_model'), $id);
             }
 
-            return $this->updated(__('core::messages.resource.updated', ['model' => 'Subregion']));
+            return $this->updated(__('restapi::messages.resource.updated', ['model' => 'Subregion']));
 
         } catch (ModelNotFoundException $exception) {
 
@@ -179,7 +179,7 @@ class SubregionController extends Controller
                 throw (new DeleteOperationException())->setModel(config('fintech.local.subregion_model'), $id);
             }
 
-            return $this->deleted(__('core::messages.resource.deleted', ['model' => 'Subregion']));
+            return $this->deleted(__('restapi::messages.resource.deleted', ['model' => 'Subregion']));
 
         } catch (ModelNotFoundException $exception) {
 
@@ -215,7 +215,7 @@ class SubregionController extends Controller
                 throw (new RestoreOperationException())->setModel(config('fintech.local.subregion_model'), $id);
             }
 
-            return $this->restored(__('core::messages.resource.restored', ['model' => 'Subregion']));
+            return $this->restored(__('restapi::messages.resource.restored', ['model' => 'Subregion']));
 
         } catch (ModelNotFoundException $exception) {
 
@@ -241,7 +241,7 @@ class SubregionController extends Controller
 
             $subregionPaginate = Local::subregion()->export($inputs);
 
-            return $this->exported(__('core::messages.resource.exported', ['model' => 'Subregion']));
+            return $this->exported(__('restapi::messages.resource.exported', ['model' => 'Subregion']));
 
         } catch (Exception $exception) {
 
