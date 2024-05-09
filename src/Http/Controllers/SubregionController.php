@@ -71,7 +71,7 @@ class SubregionController extends Controller
                 throw (new StoreOperationException)->setModel(config('fintech.local.subregion_model'));
             }
 
-            return $this->created([
+            return response()->created([
                 'message' => __('restapi::messages.resource.created', ['model' => 'Subregion']),
                 'id' => $subregion->id,
             ]);
@@ -104,7 +104,7 @@ class SubregionController extends Controller
 
         } catch (ModelNotFoundException $exception) {
 
-            return $this->notfound($exception->getMessage());
+            return response()->notfound($exception->getMessage());
 
         } catch (Exception $exception) {
 
@@ -138,11 +138,11 @@ class SubregionController extends Controller
                 throw (new UpdateOperationException)->setModel(config('fintech.local.subregion_model'), $id);
             }
 
-            return $this->updated(__('restapi::messages.resource.updated', ['model' => 'Subregion']));
+            return response()->updated(__('restapi::messages.resource.updated', ['model' => 'Subregion']));
 
         } catch (ModelNotFoundException $exception) {
 
-            return $this->notfound($exception->getMessage());
+            return response()->notfound($exception->getMessage());
 
         } catch (Exception $exception) {
 
@@ -176,11 +176,11 @@ class SubregionController extends Controller
                 throw (new DeleteOperationException())->setModel(config('fintech.local.subregion_model'), $id);
             }
 
-            return $this->deleted(__('restapi::messages.resource.deleted', ['model' => 'Subregion']));
+            return response()->deleted(__('restapi::messages.resource.deleted', ['model' => 'Subregion']));
 
         } catch (ModelNotFoundException $exception) {
 
-            return $this->notfound($exception->getMessage());
+            return response()->notfound($exception->getMessage());
 
         } catch (Exception $exception) {
 
@@ -212,11 +212,11 @@ class SubregionController extends Controller
                 throw (new RestoreOperationException())->setModel(config('fintech.local.subregion_model'), $id);
             }
 
-            return $this->restored(__('restapi::messages.resource.restored', ['model' => 'Subregion']));
+            return response()->restored(__('restapi::messages.resource.restored', ['model' => 'Subregion']));
 
         } catch (ModelNotFoundException $exception) {
 
-            return $this->notfound($exception->getMessage());
+            return response()->notfound($exception->getMessage());
 
         } catch (Exception $exception) {
 
@@ -238,7 +238,7 @@ class SubregionController extends Controller
 
             $subregionPaginate = Local::subregion()->export($inputs);
 
-            return $this->exported(__('restapi::messages.resource.exported', ['model' => 'Subregion']));
+            return response()->exported(__('restapi::messages.resource.exported', ['model' => 'Subregion']));
 
         } catch (Exception $exception) {
 

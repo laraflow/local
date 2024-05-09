@@ -71,7 +71,7 @@ class StateController extends Controller
                 throw (new StoreOperationException)->setModel(config('fintech.local.state_model'));
             }
 
-            return $this->created([
+            return response()->created([
                 'message' => __('restapi::messages.resource.created', ['model' => 'State']),
                 'id' => $state->id,
             ]);
@@ -104,7 +104,7 @@ class StateController extends Controller
 
         } catch (ModelNotFoundException $exception) {
 
-            return $this->notfound($exception->getMessage());
+            return response()->notfound($exception->getMessage());
 
         } catch (Exception $exception) {
 
@@ -138,11 +138,11 @@ class StateController extends Controller
                 throw (new UpdateOperationException)->setModel(config('fintech.local.state_model'), $id);
             }
 
-            return $this->updated(__('restapi::messages.resource.updated', ['model' => 'State']));
+            return response()->updated(__('restapi::messages.resource.updated', ['model' => 'State']));
 
         } catch (ModelNotFoundException $exception) {
 
-            return $this->notfound($exception->getMessage());
+            return response()->notfound($exception->getMessage());
 
         } catch (Exception $exception) {
 
@@ -176,11 +176,11 @@ class StateController extends Controller
                 throw (new DeleteOperationException())->setModel(config('fintech.local.state_model'), $id);
             }
 
-            return $this->deleted(__('restapi::messages.resource.deleted', ['model' => 'State']));
+            return response()->deleted(__('restapi::messages.resource.deleted', ['model' => 'State']));
 
         } catch (ModelNotFoundException $exception) {
 
-            return $this->notfound($exception->getMessage());
+            return response()->notfound($exception->getMessage());
 
         } catch (Exception $exception) {
 
@@ -212,11 +212,11 @@ class StateController extends Controller
                 throw (new RestoreOperationException())->setModel(config('fintech.local.state_model'), $id);
             }
 
-            return $this->restored(__('restapi::messages.resource.restored', ['model' => 'State']));
+            return response()->restored(__('restapi::messages.resource.restored', ['model' => 'State']));
 
         } catch (ModelNotFoundException $exception) {
 
-            return $this->notfound($exception->getMessage());
+            return response()->notfound($exception->getMessage());
 
         } catch (Exception $exception) {
 
@@ -238,7 +238,7 @@ class StateController extends Controller
 
             $statePaginate = Local::state()->export($inputs);
 
-            return $this->exported(__('restapi::messages.resource.exported', ['model' => 'State']));
+            return response()->exported(__('restapi::messages.resource.exported', ['model' => 'State']));
 
         } catch (Exception $exception) {
 
