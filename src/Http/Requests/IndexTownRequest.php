@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class IndexTownRequest extends FormRequest
 {
-    use \Fintech\Core\Traits\HasPaginateQuery;
+    use \Fintech\RestApi\Traits\HasPaginateQuery;
 
     /**
      * Determine if the user is authorized to make this request.
