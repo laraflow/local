@@ -19,7 +19,7 @@ use Laraflow\Local\Services\TownService;
  * @method static RegionService region()
  * @method static SubregionService subregion()
  * @method static TownService town()
- *                                                            // Crud Service Method Point Do not Remove //
+ *                                   // Crud Service Method Point Do not Remove //
  *
  * @see \Laraflow\Local\Local
  */

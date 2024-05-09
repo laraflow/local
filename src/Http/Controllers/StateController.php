@@ -67,7 +67,7 @@ class StateController extends Controller
 
             $state = Local::state()->create($inputs);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.state_model'));
             }
 
@@ -96,7 +96,7 @@ class StateController extends Controller
 
             $state = Local::state()->find($id);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.state_model'), $id);
             }
 
@@ -127,13 +127,13 @@ class StateController extends Controller
 
             $state = Local::state()->find($id);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.state_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (!Local::state()->update($id, $inputs)) {
+            if (! Local::state()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.state_model'), $id);
             }
@@ -167,11 +167,11 @@ class StateController extends Controller
 
             $state = Local::state()->find($id);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.state_model'), $id);
             }
 
-            if (!Local::state()->destroy($id)) {
+            if (! Local::state()->destroy($id)) {
 
                 throw (new DeleteOperationException())->setModel(config('fintech.local.state_model'), $id);
             }
@@ -203,11 +203,11 @@ class StateController extends Controller
 
             $state = Local::state()->find($id, true);
 
-            if (!$state) {
+            if (! $state) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.state_model'), $id);
             }
 
-            if (!Local::state()->restore($id)) {
+            if (! Local::state()->restore($id)) {
 
                 throw (new RestoreOperationException())->setModel(config('fintech.local.state_model'), $id);
             }
