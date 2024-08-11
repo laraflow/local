@@ -172,7 +172,7 @@ class CityController extends Controller
 
             if (! Local::city()->destroy($id)) {
 
-                throw (new DeleteOperationException())->setModel(config('fintech.local.city_model'), $id);
+                throw (new DeleteOperationException)->setModel(config('fintech.local.city_model'), $id);
             }
 
             return response()->deleted(__('restapi::messages.resource.deleted', ['model' => 'City']));
@@ -208,7 +208,7 @@ class CityController extends Controller
 
             if (! Local::city()->restore($id)) {
 
-                throw (new RestoreOperationException())->setModel(config('fintech.local.city_model'), $id);
+                throw (new RestoreOperationException)->setModel(config('fintech.local.city_model'), $id);
             }
 
             return response()->restored(__('restapi::messages.resource.restored', ['model' => 'City']));

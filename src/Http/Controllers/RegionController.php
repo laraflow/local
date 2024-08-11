@@ -173,7 +173,7 @@ class RegionController extends Controller
 
             if (! Local::region()->destroy($id)) {
 
-                throw (new DeleteOperationException())->setModel(config('fintech.local.region_model'), $id);
+                throw (new DeleteOperationException)->setModel(config('fintech.local.region_model'), $id);
             }
 
             return response()->deleted(__('restapi::messages.resource.deleted', ['model' => 'Region']));
@@ -209,7 +209,7 @@ class RegionController extends Controller
 
             if (! Local::region()->restore($id)) {
 
-                throw (new RestoreOperationException())->setModel(config('fintech.local.region_model'), $id);
+                throw (new RestoreOperationException)->setModel(config('fintech.local.region_model'), $id);
             }
 
             return response()->restored(__('restapi::messages.resource.restored', ['model' => 'Region']));

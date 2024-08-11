@@ -173,7 +173,7 @@ class CurrencyController extends Controller
 
             if (! Local::currency()->destroy($id)) {
 
-                throw (new DeleteOperationException())->setModel(config('fintech.local.currency_model'), $id);
+                throw (new DeleteOperationException)->setModel(config('fintech.local.currency_model'), $id);
             }
 
             return response()->deleted(__('restapi::messages.resource.deleted', ['model' => 'Currency']));
@@ -209,7 +209,7 @@ class CurrencyController extends Controller
 
             if (! Local::currency()->restore($id)) {
 
-                throw (new RestoreOperationException())->setModel(config('fintech.local.currency_model'), $id);
+                throw (new RestoreOperationException)->setModel(config('fintech.local.currency_model'), $id);
             }
 
             return response()->restored(__('restapi::messages.resource.restored', ['model' => 'Currency']));

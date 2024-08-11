@@ -173,7 +173,7 @@ class StateController extends Controller
 
             if (! Local::state()->destroy($id)) {
 
-                throw (new DeleteOperationException())->setModel(config('fintech.local.state_model'), $id);
+                throw (new DeleteOperationException)->setModel(config('fintech.local.state_model'), $id);
             }
 
             return response()->deleted(__('restapi::messages.resource.deleted', ['model' => 'State']));
@@ -209,7 +209,7 @@ class StateController extends Controller
 
             if (! Local::state()->restore($id)) {
 
-                throw (new RestoreOperationException())->setModel(config('fintech.local.state_model'), $id);
+                throw (new RestoreOperationException)->setModel(config('fintech.local.state_model'), $id);
             }
 
             return response()->restored(__('restapi::messages.resource.restored', ['model' => 'State']));

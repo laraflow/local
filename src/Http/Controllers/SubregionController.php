@@ -173,7 +173,7 @@ class SubregionController extends Controller
 
             if (! Local::subregion()->destroy($id)) {
 
-                throw (new DeleteOperationException())->setModel(config('fintech.local.subregion_model'), $id);
+                throw (new DeleteOperationException)->setModel(config('fintech.local.subregion_model'), $id);
             }
 
             return response()->deleted(__('restapi::messages.resource.deleted', ['model' => 'Subregion']));
@@ -209,7 +209,7 @@ class SubregionController extends Controller
 
             if (! Local::subregion()->restore($id)) {
 
-                throw (new RestoreOperationException())->setModel(config('fintech.local.subregion_model'), $id);
+                throw (new RestoreOperationException)->setModel(config('fintech.local.subregion_model'), $id);
             }
 
             return response()->restored(__('restapi::messages.resource.restored', ['model' => 'Subregion']));

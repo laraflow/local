@@ -173,7 +173,7 @@ class CountryController extends Controller
 
             if (! Local::country()->destroy($id)) {
 
-                throw (new DeleteOperationException())->setModel(config('fintech.local.country_model'), $id);
+                throw (new DeleteOperationException)->setModel(config('fintech.local.country_model'), $id);
             }
 
             return response()->deleted(__('restapi::messages.resource.deleted', ['model' => 'Country']));
@@ -209,7 +209,7 @@ class CountryController extends Controller
 
             if (! Local::country()->restore($id)) {
 
-                throw (new RestoreOperationException())->setModel(config('fintech.local.country_model'), $id);
+                throw (new RestoreOperationException)->setModel(config('fintech.local.country_model'), $id);
             }
 
             return response()->restored(__('restapi::messages.resource.restored', ['model' => 'Country']));
