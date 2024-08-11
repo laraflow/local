@@ -21,7 +21,7 @@ class Country extends BaseModel
 
     protected $guarded = ['id'];
 
-    protected $appends = ['links'];
+
 
     protected $casts = ['country_data' => 'array', 'restored_at' => 'datetime', 'enabled' => 'bool'];
 

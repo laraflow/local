@@ -21,7 +21,7 @@ class City extends BaseModel
 
     protected $guarded = ['id'];
 
-    protected $appends = ['links'];
+
 
     protected $casts = ['city_data' => 'array', 'restored_at' => 'datetime', 'enabled' => 'bool'];
 

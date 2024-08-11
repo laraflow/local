@@ -21,7 +21,7 @@ class State extends BaseModel
 
     protected $guarded = ['id'];
 
-    protected $appends = ['links'];
+
 
     protected $casts = ['state_data' => 'array', 'restored_at' => 'datetime', 'enabled' => 'bool'];
 

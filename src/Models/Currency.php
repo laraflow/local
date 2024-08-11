@@ -21,7 +21,7 @@ class Currency extends BaseModel
 
     protected $guarded = ['id'];
 
-    protected $appends = ['links'];
+
 
     protected $casts = ['currency_data' => 'array', 'restored_at' => 'datetime', 'enabled' => 'bool'];
 
