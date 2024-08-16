@@ -1,18 +1,18 @@
 {
-    "name": "laraflow/local",
-    "description": "This is my package local",
+    "name": "laraflow/locale",
+    "description": "This is my package locale",
     "keywords": [
         "laraflow",
         "laravel",
         "local"
     ],
-    "homepage": "https://github.com/laraflow/local",
+    "homepage": "https://github.com/laraflow/locale",
     "license": "MIT",
     "authors": [
         {
             "name": "Mohammad Hafijul Islam",
             "email": "hafijul233@gmail.com",
-            "role": "Developer"
+            "role": "Maintainer"
         }
     ],
     "require": {
@@ -33,12 +33,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Laraflow\\Local\\": "src/"
+            "Laraflow\\Locale\\": "src/",
+            "Laraflow\\Locale\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laraflow\\Local\\Tests\\": "tests/"
+            "Laraflow\\Locale\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -58,10 +59,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laraflow\\Local\\LocalServiceProvider"
+                "Laraflow\\Locale\\LocaleServiceProvider"
             ],
             "aliases": {
-                "Local": "Laraflow\\Local\\Facades\\Local"
+                "Locale": "Laraflow\\Locale\\Facades\\Locale"
             }
         }
     },

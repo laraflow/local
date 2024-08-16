@@ -21,12 +21,12 @@ use Laraflow\Local\Services\TownService;
  * @method static TownService town()
  *                                   // Crud Service Method Point Do not Remove //
  *
- * @see \Laraflow\Local\Local
+ * @see \Laraflow\Local\Locale
  */
 class Local extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Laraflow\Local\Local::class;
+        return \Laraflow\Local\Locale::class;
     }
 }

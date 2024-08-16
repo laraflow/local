@@ -3,7 +3,7 @@
 namespace Laraflow\Local\Tests;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Laraflow\Local\LocalServiceProvider;
+use Laraflow\Local\LocaleServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -33,7 +33,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
-            LocalServiceProvider::class,
+            LocaleServiceProvider::class,
         ];
     }
 }
