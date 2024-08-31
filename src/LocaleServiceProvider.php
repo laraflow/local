@@ -15,7 +15,7 @@ class LocaleServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/local.php', 'fintech.local'
+            __DIR__ . '/../config/local.php', 'fintech.local'
         );
 
         $this->app->register(RouteServiceProvider::class);
@@ -28,21 +28,21 @@ class LocaleServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../config/local.php' => config_path('fintech/local.php'),
+            __DIR__ . '/../config/local.php' => config_path('fintech/local.php'),
         ]);
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
-        $this->loadTranslationsFrom(__DIR__.'/../lang', 'local');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'local');
 
         $this->publishes([
-            __DIR__.'/../lang' => $this->app->langPath('vendor/local'),
+            __DIR__ . '/../lang' => $this->app->langPath('vendor/local'),
         ]);
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'local');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'local');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/local'),
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/local'),
         ]);
 
         if ($this->app->runningInConsole()) {

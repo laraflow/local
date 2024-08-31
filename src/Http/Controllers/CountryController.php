@@ -67,7 +67,7 @@ class CountryController extends Controller
 
             $country = Local::country()->create($inputs);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.country_model'));
             }
 
@@ -96,7 +96,7 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
@@ -127,13 +127,13 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (! Local::country()->update($id, $inputs)) {
+            if (!Local::country()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.country_model'), $id);
             }
@@ -167,11 +167,11 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
-            if (! Local::country()->destroy($id)) {
+            if (!Local::country()->destroy($id)) {
 
                 throw (new DeleteOperationException)->setModel(config('fintech.local.country_model'), $id);
             }
@@ -203,11 +203,11 @@ class CountryController extends Controller
 
             $country = Local::country()->find($id, true);
 
-            if (! $country) {
+            if (!$country) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.country_model'), $id);
             }
 
-            if (! Local::country()->restore($id)) {
+            if (!Local::country()->restore($id)) {
 
                 throw (new RestoreOperationException)->setModel(config('fintech.local.country_model'), $id);
             }
