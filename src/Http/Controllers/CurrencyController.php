@@ -67,7 +67,7 @@ class CurrencyController extends Controller
 
             $currency = Local::currency()->create($inputs);
 
-            if (!$currency) {
+            if (! $currency) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.currency_model'));
             }
 
@@ -96,7 +96,7 @@ class CurrencyController extends Controller
 
             $currency = Local::currency()->find($id);
 
-            if (!$currency) {
+            if (! $currency) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.currency_model'), $id);
             }
 
@@ -127,13 +127,13 @@ class CurrencyController extends Controller
 
             $currency = Local::currency()->find($id);
 
-            if (!$currency) {
+            if (! $currency) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.currency_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (!Local::currency()->update($id, $inputs)) {
+            if (! Local::currency()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.currency_model'), $id);
             }
@@ -167,11 +167,11 @@ class CurrencyController extends Controller
 
             $currency = Local::currency()->find($id);
 
-            if (!$currency) {
+            if (! $currency) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.currency_model'), $id);
             }
 
-            if (!Local::currency()->destroy($id)) {
+            if (! Local::currency()->destroy($id)) {
 
                 throw (new DeleteOperationException)->setModel(config('fintech.local.currency_model'), $id);
             }
@@ -203,11 +203,11 @@ class CurrencyController extends Controller
 
             $currency = Local::currency()->find($id, true);
 
-            if (!$currency) {
+            if (! $currency) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.currency_model'), $id);
             }
 
-            if (!Local::currency()->restore($id)) {
+            if (! Local::currency()->restore($id)) {
 
                 throw (new RestoreOperationException)->setModel(config('fintech.local.currency_model'), $id);
             }
