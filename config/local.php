@@ -109,7 +109,7 @@ return [
     | Repositories
     |--------------------------------------------------------------------------
     |
-    | This value will be used across systems where a repositoy instance is needed
+    | This value will be used across systems where a repository instance is needed
     */
 
     'repositories' => [
