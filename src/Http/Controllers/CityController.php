@@ -66,7 +66,7 @@ class CityController extends Controller
 
             $city = Local::city()->create($inputs);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.city_model'));
             }
 
@@ -95,7 +95,7 @@ class CityController extends Controller
 
             $city = Local::city()->find($id);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
@@ -126,13 +126,13 @@ class CityController extends Controller
 
             $city = Local::city()->find($id);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (!Local::city()->update($id, $inputs)) {
+            if (! Local::city()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.city_model'), $id);
             }
@@ -166,11 +166,11 @@ class CityController extends Controller
 
             $city = Local::city()->find($id);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
-            if (!Local::city()->destroy($id)) {
+            if (! Local::city()->destroy($id)) {
 
                 throw (new DeleteOperationException)->setModel(config('fintech.local.city_model'), $id);
             }
@@ -202,11 +202,11 @@ class CityController extends Controller
 
             $city = Local::city()->find($id, true);
 
-            if (!$city) {
+            if (! $city) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.city_model'), $id);
             }
 
-            if (!Local::city()->restore($id)) {
+            if (! Local::city()->restore($id)) {
 
                 throw (new RestoreOperationException)->setModel(config('fintech.local.city_model'), $id);
             }
