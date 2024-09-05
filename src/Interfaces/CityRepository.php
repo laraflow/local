@@ -37,7 +37,7 @@ interface CityRepository
     /**
      * find and delete a entry from records
      *
-     * @param  bool  $onlyTrashed
+     * @param bool $onlyTrashed
      * @return BaseModel
      */
     public function find(int|string $id, $onlyTrashed = false);

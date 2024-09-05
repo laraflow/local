@@ -67,7 +67,7 @@ class SubregionController extends Controller
 
             $subregion = Local::subregion()->create($inputs);
 
-            if (! $subregion) {
+            if (!$subregion) {
                 throw (new StoreOperationException)->setModel(config('fintech.local.subregion_model'));
             }
 
@@ -96,7 +96,7 @@ class SubregionController extends Controller
 
             $subregion = Local::subregion()->find($id);
 
-            if (! $subregion) {
+            if (!$subregion) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.subregion_model'), $id);
             }
 
@@ -127,13 +127,13 @@ class SubregionController extends Controller
 
             $subregion = Local::subregion()->find($id);
 
-            if (! $subregion) {
+            if (!$subregion) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.subregion_model'), $id);
             }
 
             $inputs = $request->validated();
 
-            if (! Local::subregion()->update($id, $inputs)) {
+            if (!Local::subregion()->update($id, $inputs)) {
 
                 throw (new UpdateOperationException)->setModel(config('fintech.local.subregion_model'), $id);
             }
@@ -167,11 +167,11 @@ class SubregionController extends Controller
 
             $subregion = Local::subregion()->find($id);
 
-            if (! $subregion) {
+            if (!$subregion) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.subregion_model'), $id);
             }
 
-            if (! Local::subregion()->destroy($id)) {
+            if (!Local::subregion()->destroy($id)) {
 
                 throw (new DeleteOperationException)->setModel(config('fintech.local.subregion_model'), $id);
             }
@@ -203,11 +203,11 @@ class SubregionController extends Controller
 
             $subregion = Local::subregion()->find($id, true);
 
-            if (! $subregion) {
+            if (!$subregion) {
                 throw (new ModelNotFoundException)->setModel(config('fintech.local.subregion_model'), $id);
             }
 
-            if (! Local::subregion()->restore($id)) {
+            if (!Local::subregion()->restore($id)) {
 
                 throw (new RestoreOperationException)->setModel(config('fintech.local.subregion_model'), $id);
             }

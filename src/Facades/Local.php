@@ -3,6 +3,7 @@
 namespace Laraflow\Local\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Laraflow\Local\Locale;
 use Laraflow\Local\Services\CityService;
 use Laraflow\Local\Services\CountryService;
 use Laraflow\Local\Services\CurrencyService;
@@ -27,6 +28,6 @@ class Local extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \Laraflow\Local\Locale::class;
+        return Locale::class;
     }
 }
